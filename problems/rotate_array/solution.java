@@ -15,6 +15,6 @@ class Solution {
 		
 		for(int i =0;i<=N; i++){
 			nums[i] = arr[i];
-		}
+		 }
     }
 }
