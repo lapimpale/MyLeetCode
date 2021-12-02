@@ -20,17 +20,17 @@ class Solution {
     else
     {
         int val=0;
-        for(int i = 3;i<=n;i++)
+        for(int i = 3;i<=n;i++) // i =3 // i=4
         {
             
-           val = a + b + c;
-           a = b;
-           b = c;
-           c = val;
+           val = a + b + c; // 0 + 1 + 1 // 1+1+2
+           a = b; // a=1 // a=1
+           b = c; // b = 1 // b = 2
+           c = val;// c = 2 // c = 4
             
            
         }
-        return  c;
+        return  c; //c = 4
     }
   }
 }
