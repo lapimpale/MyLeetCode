@@ -1,29 +1,20 @@
-class Solution {
+public class Solution {
     public int maximalSquare(char[][] matrix) {
-         int m = matrix.length;
-        int n = matrix[0].length;
-        int ans = 0;
-        int dp[][] = new int[m][n];
-        
-        for(int i = m-1;i>=0;i--){
-            for(int j = n-1;j>=0;j--){
-                if(i == m-1 && j == n-1){
-                    dp[i][j] = matrix[i][j] - '0';
-                }else if(i == m-1){
-                    dp[i][j] = matrix[i][j] - '0';
-                }else if(j == n-1){
-                    dp[i][j] = matrix[i][j] - '0';
-                }else{
-                    if(matrix[i][j] == '0'){
-                        dp[i][j] = 0;
-                    }else{
-                        dp[i][j] = 1 +  Math.min(dp[i+1][j] , Math.min(dp[i+1][j+1],dp[i][j+1]));
-                    }
+        int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
+        int[] dp = new int[cols + 1];
+        int maxsqlen = 0, prev = 0;
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= cols; j++) {
+                int temp = dp[j];
+                if (matrix[i - 1][j - 1] == '1') {
+                    dp[j] = Math.min(Math.min(dp[j - 1], prev), dp[j]) + 1;
+                    maxsqlen = Math.max(maxsqlen, dp[j]);
+                } else {
+                    dp[j] = 0;
                 }
-                ans = Math.max(ans,dp[i][j]);
+                prev = temp;
             }
         }
-        
-        return ans*ans;
+        return maxsqlen * maxsqlen;
     }
 }
