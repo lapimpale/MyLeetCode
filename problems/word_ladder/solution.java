@@ -1,16 +1,4 @@
 class Solution {
-         /*
-    Approach:
-    Similar to BFS, we will start from beginWord and insert that into a queue
-    now from this word, we will see all possible words we can reach by replacing one character
-    at a time with any character lying between a to z.
-    If new word equals endWord and exists in dictionary we will return there adding 1 to counter.
-    If new word exists in our dictionary, we will add that in our queue and remove that
-    from our dictionary. We will do this for all possible words.
-    Now whatever words are there in queue, they will be of same level 
-    (those words have been reached from same level word). So once all words of queue are processed at a 
-    level, we will increase our counter.
-    */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Queue<String> queue = new LinkedList<>();
         // converting to set as set remove() takes O(1) time while list remove() takes O(n)
@@ -52,17 +40,4 @@ class Solution {
         // reaching here means we have not found endWord, yet return 0
         return 0;
     }
-    
-    /*
-    Time Complexity: N is size of dictionary, M is say length of each word
-    O(N) - to iterate over each word of dictionary
-    O(M) - to convert word to char array
-    O(M) - looping for each char
-    26 - to reach each possible word from a word
-    O(M) - to convert charArray to String
-    O(M) - to compare two words
-    Inner for loop --> O(M)*26* (O(M) + O(M)) --> O(M^2)
-    Time Complexity including outer-inner for loop --> O(N) * ( O(M)+O(M^2) )
-    Final Time Complexity - O(N*M^2)
-    */
 }
