@@ -1,30 +1,31 @@
 class Solution{
-
-public boolean wordPattern(String pattern, String s) {
-      
-        String[] tokens = s.split(" ");
-        if(pattern.length() != tokens.length) return false;
+    public boolean wordPattern(String pattern, String s) {
         
-        
-        Map<Character, String> m = new HashMap<>();
-        Set<Character> patternSet = new HashSet<>();
-        Set<String> wordSet = new HashSet<>();
-        
-        for(int i = 0; i < tokens.length; i++) {
-            char c = pattern.charAt(i);
-            String str = tokens[i];
-            
-            patternSet.add(c);
-            wordSet.add(str);
-            
-            if(m.containsKey(c) && !m.get(c).equals(str)) {
+        String[] words = s.split(" ");
+    
+        if(words.length!=pattern.length()) return false;
+    
+        Map index = new HashMap();
+    
+        for(Integer i =0; i< words.length;++i){
+            // Integer is used because we use this value to compare for the same hashmap
+            if(index.put(pattern.charAt(i),i)!= index.put(words[i],i)){
                 return false;
             }
-            else {
-                m.put(c, str);
-            }
         }
-        
-        return patternSet.size() == wordSet.size();
+        return true;
+    }
+}
+
+class Solution2{
+    public boolean wordPattern(String pattern, String str) {
+    String[] words = str.split(" ");
+    if (words.length != pattern.length())
+        return false;
+    Map index = new HashMap();
+    for (Integer i=0; i<words.length; ++i)
+        if (index.put(pattern.charAt(i), i) != index.put(words[i], i))
+            return false;
+    return true;
     }
 }
