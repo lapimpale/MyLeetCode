@@ -1,24 +1,16 @@
 class Solution {
-    private double fastPow(double x, long n) {
-        if (n == 0) {
-            return 1.0;
+    public double myPow(double x, long n) {
+       double res = 1;     // Initialize result
+        long p = Math.abs(n); // converting to positive value since using binary expo
+  
+        while (p > 0){       
+            // If p is odd, multiply x with result
+            if((p & 1) != 0) res = res * x;
+  
+            // y must be even now
+            p = p>> 1; // p = p/2
+            x = x * x;  // Change x to x^2
         }
-        else{
-            double half = fastPow(x, n / 2);
-            if (n % 2 == 0) {
-                return half * half;
-            } else {
-                return half * half * x;
-            }
-        }
-    }
-    public double myPow(double x, int n) {
-        long N = n;
-        if (N < 0) {
-            x = 1 / x;
-            N = -N;
-        }
-
-        return fastPow(x, N);
+        return n<0?1/res:res;// checking if n is negative return 1/n or else n.
     }
 }
