@@ -1,11 +1,11 @@
 class Solution {
-    public int findPeakElement(int[] nums) {
+    public int findPeakElement(int[] arr) {
          int start = 0;
-        int end = nums.length - 1;
+        int end = arr.length - 1;
 
         while (start < end) {
             int mid = start + (end - start) / 2;
-            if (nums[mid] > nums[mid+1]) {
+            if (arr[mid] > arr[mid+1]) {
                 // you are in dec part of array
                 // this may be the ans, but look at left
                 // this is why end != mid - 1
