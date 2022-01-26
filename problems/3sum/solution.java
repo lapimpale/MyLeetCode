@@ -1,35 +1,20 @@
 class Solution {
-    public List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> ans = new HashSet<>(); // In order to remove dupliates
-
-        int len = nums.length;
-
-        if (len < 3) return new ArrayList<>(ans); // base case
-
-        Arrays.sort(nums); // in order to remove duplicates e.g. [1, -1, 0] and [-1, 1, 0] would be considered differently.
-
-        for (int i = 0; i < len; i++) {
-
-            Map<Integer, Integer> visited = new HashMap<>();
-
-            for (int j = i+1; j < len; j++) {
-
-                if (visited.containsKey(nums[j])) {
-
-                    ans.add(Arrays.asList(nums[i], nums[visited.get(nums[j])], nums[j]));
-
-                } else {
-
-                    visited.put(-nums[i]-nums[j], j); // target is now -nums[i]-nums[j]
-
-                }
-
+      public  List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> res  = new HashSet<>();
+        if(nums.length==0) return new ArrayList<>(res);
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length-2;i++){
+            int j =i+1;
+           int  k = nums.length-1;
+            while(j<k){
+                int sum = nums[i]+nums[j]+nums[k];
+                if(sum==0)res.add(Arrays.asList(nums[i],nums[j++],nums[k--]));
+                else if ( sum >0) k--;
+                else if (sum<0) j++;
             }
 
         }
+        return new ArrayList<>(res);
 
-        
-
-        return new ArrayList<>(ans);
     }
 }
