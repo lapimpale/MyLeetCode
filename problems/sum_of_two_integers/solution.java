@@ -1,6 +1,6 @@
 class Solution {
     public int getSum(int a, int b) {
-        int sum, carry;
+        int sum=0, carry;
         
         while (b!=0){
             sum = a^b;
