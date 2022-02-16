@@ -7,7 +7,7 @@ class Solution {
             // If p is odd, multiply x with result
             if((p & 1) != 0) res = res * x;
   
-            // y must be even now
+            // p must be even now
             p = p>> 1; // p = p/2
             x = x * x;  // Change x to x^2
         }
