@@ -12,12 +12,13 @@ class Solution {
         
         for(int i = 0; i< (s.length()-1);i++){
             if(hs.get(s.charAt(i)) >= hs.get(s.charAt(i+1))) {
-		result += hs.get(s.charAt(i));
-	}
-	else
-		result -= hs.get(s.charAt(i));
-	}
-	result += hs.get(s.charAt(s.length()-1));  
-    return result;
+                result += hs.get(s.charAt(i));
+            }
+            else
+                result -= hs.get(s.charAt(i));
+        }
+        
+        result += hs.get(s.charAt(s.length()-1));  
+        return result;
     }
 }
