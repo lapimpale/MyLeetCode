@@ -1,27 +1,18 @@
 class Solution {
-     List<List<Integer>> list;
-    public List<List<Integer>> combine(int n, int k) {
-        list = new ArrayList<>();
-        List<Integer> cur = new ArrayList<>();
-        boolean []visited = new boolean[n + 1];
-        Arrays.fill(visited, false);
-        backtrack(cur, k, n, 1, visited);
-        return list;
-    }
-    
-    public void backtrack(List<Integer> cur, int k, int n, int next, boolean[] visited){
-        if(cur.size() == k){
-            list.add(new ArrayList<Integer>(cur));
-            return;
-        }
-        for(int i = next; i < n + 1 && (n + 1 - i ) >= (k - cur.size()); i++){
-            if(!visited[i]){
-                cur.add(i);
-                visited[i] = true;
-                backtrack(cur, k, n, i + 1, visited);
-                cur.remove(cur.size() - 1);
-                visited[i] = false;
-            }
-        }
-    }
+    public static List<List<Integer>> combine(int n, int k) {
+		List<List<Integer>> combs = new ArrayList<List<Integer>>();
+		combine(combs, new ArrayList<Integer>(), 1, n, k);
+		return combs;
+	}
+	public static void combine(List<List<Integer>> combs, List<Integer> comb, int start, int n, int k) {
+		if(k==0) {
+			combs.add(new ArrayList<Integer>(comb));
+			return;
+		}
+		for(int i=start;i<=n;i++) {
+			comb.add(i);
+			combine(combs, comb, i+1, n, k-1);
+			comb.remove(comb.size()-1);
+		}
+	}
 }
