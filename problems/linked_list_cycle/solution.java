@@ -11,14 +11,14 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        int count = 0;
-while (head!=null) {
-	head = head.next;
-	count++;
-
-	if (count > 10000) return true;
-}
-
-return false;
+        if(head==null) return false;
+        ListNode walker = head;
+        ListNode runner = head;
+        while(runner.next!=null && runner.next.next!=null) {
+            walker = walker.next;
+            runner = runner.next.next;
+            if(walker==runner) return true;
+        }
+        return false;   
     }
 }
