@@ -1,21 +1,24 @@
 class Solution {
-     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> ret = new ArrayList<>();
-        int window = p.length();
-        for (int i=0;i<=s.length()-window;i++){
-            String substr = s.substring(i,i+window);
-            if (isAnagram(substr,p)) ret.add(i);
-        }
-        return ret;
-    }
-
-    public boolean isAnagram(String s1, String s2){
-        int [] arr = new int[26];
-        for (int i=0;i<s1.length();i++){
-            arr[s1.charAt(i)-'a']++;
-            arr[s2.charAt(i)-'a']--;
-        }
-        for (int i=0;i<26;i++)if (arr[i]!=0)return false;
+    int pFreq[];    
+    public boolean  isAnagram(){
+       // for(int num : pFreq) System.out.println(" num is "+num);
+        for(int num : pFreq) if(num!=0)return false;
         return true;
+    }
+    public List<Integer> findAnagrams(String s, String p) {
+        if(p.length()>s.length())return new ArrayList<>();
+        pFreq=new int[26];
+        int count=0;
+        List<Integer>list=new ArrayList<>();
+        for(char c : p.toCharArray())pFreq[c-'a']++;
+        for(int i=0;i<p.length()-1;i++)pFreq[s.charAt(i)-'a']--;
+        for(int i=p.length()-1,j=0;i<s.length();i++){
+            pFreq[s.charAt(i)-'a']--;
+           // System.out.println("yes "+i+" no "+j);
+            while(i-j+1>p.length())
+                 pFreq[s.charAt(j++)-'a']++;
+            if(isAnagram())list.add(j);           
+        }
+        return list;
     }
 }
