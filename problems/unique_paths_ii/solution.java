@@ -1,5 +1,6 @@
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+
         int R = obstacleGrid.length;
         int C = obstacleGrid[0].length;
 
@@ -37,7 +38,5 @@ class Solution {
 
         // Return value stored in rightmost bottommost cell. That is the destination.
         return obstacleGrid[R - 1][C - 1];
-  
-        
     }
 }
