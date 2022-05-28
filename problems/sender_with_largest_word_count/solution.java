@@ -1,0 +1,18 @@
+class Solution {
+    public String largestWordCount(String[] messages, String[] senders) {
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < messages.length; i++) {
+            map.merge(senders[i], messages[i].split(" ").length, Integer::sum);
+        }
+
+        int ans = 0, idx = 0;
+        Arrays.sort(senders);
+        for (int i = 0; i < senders.length; i++) {
+            if (map.get(senders[i]) >= ans) {
+                idx = i;
+                ans = map.get(senders[i]);
+            }
+        }
+        return senders[idx];
+    }
+}
